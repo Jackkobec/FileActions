@@ -1,0 +1,144 @@
+package com.jss.newcontactlist;
+
+import java.io.Serializable;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ *
+ * @autor Jack:
+ * email:   jackkobec@gmail.com
+ * Skype:   skypejs77
+ * @version 3.4
+ */
+
+/**
+ * Contact class
+ */
+public class Contact implements Serializable {
+    private String name;
+    private String phoneNumber;
+
+    /**
+     * Constructors
+     */
+    public Contact() {
+    }
+
+    public Contact(String name, String phoneNumber) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * Getters \ setters
+     */
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * Format contact info to template and show
+     */
+
+    public void contactShow() {
+        System.out.println(String.format("\nname: %s\nphoneNamber: %s ", name, phoneNumber
+                + "\n------------------------"));
+    }
+
+    /**
+     * Input contact name from console
+     */
+    public void nameInput(Scanner sc) {
+
+        System.out.print("\n>>>Enter contact name: ");
+        setName(sc.nextLine());
+    }
+
+    /**
+     * Input contact phone from console
+     */
+    public void inputPhoneNamber(Scanner sc) {
+        System.out.print("\n>>>Enter contact phone: ");
+        setPhoneNumber(sc.nextLine());
+    }
+
+    /**
+     * Валидатор имени символы a-z, A-Z, 0-9, длина 3-15
+     */
+    public void validatorName(String name) {
+        Scanner sc = new Scanner(System.in);
+        while (!checkName()) {
+            System.out.println("Не правильно введено имя. Для записи имени используйте символы a-z, A-Z, 0-9, _\n" +
+                    "Длина имени от 3 до 15 символов с учетом пробелов. Пример: Vasa Pyatochkin");
+            nameInput(sc);
+        }
+
+    }
+
+    /**
+     * Валидатор иномера телефона символы -9, длина 7-14
+     */
+    public void validatorPhone(String phoneNamber) {
+        Scanner sc = new Scanner(System.in);
+        while (!checkPhoneNamber()) {
+            System.out.println("Не правильно введен номер телефона. Для записи номера используйте цифры 0-9.\n" +
+                    "Длина номера от 7 до 14 символов с учетом пробелов. Допускаются проблелы. Пример: 093 772 17 49");
+            inputPhoneNamber(sc);
+        }
+
+
+    }
+
+    /**
+     * Патерн валидации имени
+     */
+    public boolean checkName() {
+        Pattern p = Pattern.compile("^[\\sA-Za-z0-9_]{3,15}$");
+        Matcher m = p.matcher(name);
+        return m.matches();
+    }
+
+    /**
+     * Патерн валидации номера телефона
+     */
+    public boolean checkPhoneNamber() {
+
+        Pattern p = Pattern.compile("^[\\s0-9\\s]{7,14}$");
+        Matcher m = p.matcher(getPhoneNumber());
+        return m.matches();
+    }
+
+    public Contact contactAddFromConsole() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("\nДля записи имени используйте символы a-z, A-Z, 0-9, _\n" +
+                "Длина имени от 3 до 15 символов с учетом пробелов. Пример: Vasa Pyatochkin");
+        nameInput(sc);
+        validatorName(getName());
+
+        System.out.println("\nДля записи номера используйте цифры 0-9.\n" +
+                "Длина номера от 7 до 14 символов с учетом пробелов. Допускаются проблелы. Пример: 097 777 77 77");
+        inputPhoneNamber(sc);
+        validatorPhone(getPhoneNumber());
+
+        return new Contact(getName(), getPhoneNumber());
+    }
+
+}
+
+
