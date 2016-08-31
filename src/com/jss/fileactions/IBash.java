@@ -1,4 +1,4 @@
-package com.jss;
+package com.jss.fileactions;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -48,7 +48,12 @@ public interface IBash {
     boolean downloadFile(String url, String localPathName) throws IOException, ClassNotFoundException;
 
     // implement recursive search (find in curr directory, then find in child dir, then repeat...)
-    List<String> find(File dir, List<String> resaultArray, String keyWord) throws IOException;
 
     List<String> findRefactored(File dir, List<String> resaultArray, String keyWord) throws IOException;
+
+    List<String> find(File dir, List<String> resaultArray, String keyWord) throws IOException;
+
+    List<String> findRefactored2(File dir, List<String> resaultArray, String keyWord) throws IOException;
+
+
 }

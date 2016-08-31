@@ -33,11 +33,11 @@ public class Bash implements IBash, Cloneable, Serializable {
             System.out.println(s);
         }
     }
-*/
 
     /**
      * Read info from the file
      */
+
     public String less(String path) throws FileNotFoundException {
         File file = new File(path);
         if (!file.exists()) {
@@ -410,6 +410,25 @@ public class Bash implements IBash, Cloneable, Serializable {
         if (!file.exists()) {
             throw new FileNotFoundException("Указанный файл отсуствует");
         }
+        if (file.getName().contains(keyWord)) {
+            resaultArray.add("--------------------------------------\n" + ((file.isDirectory()) ? "Dir " : "File ")
+                    + "\"" + file.getName() + "\"" + " found in:  " + file.getAbsolutePath());
+        }
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            for (File f : files) {
+                findRefactored(f.getCanonicalFile(), resaultArray, keyWord);
+            }
+        }
+        return resaultArray;
+    }
+
+    @Override
+    public List<String> findRefactored2(File dir, List<String> resaultArray, String keyWord) throws IOException {
+        File file = new File(dir.getPath());
+        if (!file.exists()) {
+            throw new FileNotFoundException("Указанный файл отсуствует");
+        }
         //get list of files in the current dir
         File[] files = file.listFiles();
 
@@ -429,50 +448,75 @@ public class Bash implements IBash, Cloneable, Serializable {
                         + "\"" + f.getName() + "\"" + " found in:  " + f.getAbsolutePath());
             }
             //recursive call this method for the forks directories
-            findRefactored(f.getCanonicalFile(), resaultArray, keyWord);
+            findRefactored2(f.getCanonicalFile(), resaultArray, keyWord);
         }
         return resaultArray;
     }
 
 
-    public List<String> findRefactored2(File dir, List<String> resaultArray, String keyWord) throws IOException {
+   /* public List<String> findRefactored3(File dir, List<String> resaultArray, String keyWord) throws IOException {
         File file = new File(dir.getPath());
         if (!file.exists()) {
             throw new FileNotFoundException("Указанный файл отсуствует");
         }
-
-
         //get list of files in the current dir
         File[] files = file.listFiles();
-
         //if length of the File[] array == 0   ist mean that dir is empty
 //        if (files.length == 0) {
-//            System.out.println("Dir " + dir + " is empty");
+//           return null;
+        // System.out.println("Dir " + dir + " is empty");
 //        }
         //move trough array of the inner files of current dir
         for (File f : files) {
-            if(f == null){
-                continue;
-            }
             if (f.isFile()) {
-                if (f.getName().equalsIgnoreCase(keyWord)) {
+                //check file name with "contains" because file has a
+                if (f.getName().contains(keyWord)) {
+                    //append founded file name to the List<String> resaultArray
                     resaultArray.add("--------------------------------------\n" + "File "
                             + "\"" + f.getName() + "\"" + " found in:  " + f.getAbsolutePath());
-                    //joined check is dir the i-file and equals his name to keyWord
                 }
+            } else {
+                if (f.getName().equalsIgnoreCase(keyWord)) {
+                    //append founded file name to the List<String> resaultArray
+                    resaultArray.add("--------------------------------------\n" + "Dir "
+                            + "\"" + f.getName() + "\"" + " found in:  " + f.getAbsolutePath());
+                }
+                findRefactored3(f.getCanonicalFile(), resaultArray, keyWord);
             }
-            findRefactored2(f.getCanonicalFile(), resaultArray, keyWord);
-//            if(f.isDirectory() && f.getName().equalsIgnoreCase(keyWord)) {
-//                resaultArray.add("--------------------------------------\n" + "Dir "
-//                        + "\"" + f.getName() + "\"" + " found in:  " + f.getAbsolutePath());
-//                //joined check is dir the i-file and equals his name to keyWord
-//
-//            }
-//            findRefactored2(f.getCanonicalFile(), resaultArray, keyWord);
         }
-
         return resaultArray;
-    }
+    }*/
+
+  /* public List<String> findRefactored4(File dir, List<String> resaultArray, String keyWord) throws IOException {
+       File file = new File(dir.getPath());
+       if (!file.exists()) {
+           throw new FileNotFoundException("Указанный файл отсуствует");
+       }
+       //get list of files in the current dir
+       File[] files = file.listFiles();
+       //move trough array of the inner files of current dir
+       for (File f : files) {
+           //at first check is current element a File
+           if (f.isFile()) {
+               //check file name with "contains" because file has a
+               if (f.getName().contains(keyWord)) {
+                   //append founded file name to the List<String> resaultArray
+                   resaultArray.add("--------------------------------------\n" + "File "
+                           + "\"" + f.getName() + "\"" + " found in:  " + f.getAbsolutePath());
+               }
+               //for the directories
+           } else {
+               if (f.getName().equalsIgnoreCase(keyWord)) {
+                   //append founded file name to the List<String> resaultArray
+                   resaultArray.add("--------------------------------------\n" + "Dir "
+                           + "\"" + f.getName() + "\"" + " found in:  " + f.getAbsolutePath());
+               }
+               findRefactored4(f.getCanonicalFile(), resaultArray, keyWord);
+           }
+       }
+       return resaultArray;
+   }
+   */
 
 
     private class FileCantDownloadExeption extends RuntimeException {

@@ -1,7 +1,6 @@
-package com.jss;
+package com.jss.fileactions;
 
         import java.io.File;
-        import java.io.FileNotFoundException;
         import java.io.IOException;
         import java.util.ArrayList;
         import java.util.List;
@@ -45,9 +44,9 @@ public class TestFileActions {
 //        System.out.println("------------------------------------------------");
 //        System.out.println("------------------------------------------------");
 
-     //   bash.listStrCorrectShow(bash.findRefactored(new File("d://Test Dir"), resaultArray, "teo"));
+
         System.out.println("------------------------------------------------");
-        bash.listStrCorrectShow(bash.findRefactored2(new File("d://Test Dir"), resaultArray, "teo"));
+        bash.listStrCorrectShow(bash.findRefactored(new File("d://Test Dir"), resaultArray, "teo"));
 //        Car car = new Car("Lexus", "Black");
 //        bash.saveObjToFile(car, "d://Test Dir/serialUser.txt");
 //

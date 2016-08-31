@@ -1,4 +1,4 @@
-package com.jss;
+package com.jss.fileactions;
 
 import java.io.Serializable;
 

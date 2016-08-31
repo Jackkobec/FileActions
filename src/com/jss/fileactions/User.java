@@ -1,4 +1,4 @@
-package com.jss;
+package com.jss.fileactions;
 
 import java.io.Serializable;
 
@@ -27,7 +27,7 @@ public class User implements Serializable{
 
     @Override
     public String toString() {
-        return "com.jss.ArrayListGenerics.User{" +
+        return "User{" +
                 "age='" + age + '\'' +
                 ", name='" + name + '\'' +
                 '}';
