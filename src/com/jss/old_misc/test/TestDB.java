@@ -1,8 +1,9 @@
 package com.jss.old_misc.test;
 
-import com.jss.actors.Client;
-import com.jss.actors.User;
-import com.jss.db.AppDB;
+import com.jss.old_misc.actors.*;
+import com.jss.*;
+import com.jss.old_misc.db.AppDB;
+
 
 /**
  * Created by Стас on 21.08.2016.

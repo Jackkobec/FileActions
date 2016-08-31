@@ -2,7 +2,8 @@ package com.jss.old_misc.homeWork1;
 
 import java.util.Scanner;
 
-import static homeWork1.UserUtils.userToString;
+import static com.jss.old_misc.homeWork1.UserUtils.userToString;
+
 
 
 public class RemoveUtils {

@@ -1,7 +1,8 @@
 package com.jss.old_misc.homeWork1;
 
-import static homeWork1.RemoveUtils.removeByEnteredName;
-import static homeWork1.UserUtils.*;
+
+import static com.jss.old_misc.homeWork1.RemoveUtils.removeByEnteredName;
+import static com.jss.old_misc.homeWork1.UserUtils.*;
 
 public class TestUser {
     public static void main(String[] args) {

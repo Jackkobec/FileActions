@@ -16,15 +16,15 @@ public class Bash implements IBash, Cloneable, Serializable {
     /**
      * Correct show List<String>: next element - next line without "," "[ ]" and other symbols
      */
-    public void listStrCorrectShow(List<String> list) {
+/*    public void listStrCorrectShow(List<String> list) {
 //        for (int i = 0; i < list.size(); i++) {
 //            System.out.print(list.get(i));
 //        }
         for (String s : list) {
             System.out.println(s);
         }
-    }
-/*
+    }*/
+
     public<T> void listStrCorrectShow(List<T> list) {
 //        for (int i = 0; i < list.size(); i++) {
 //            System.out.print(list.get(i));
