@@ -5,12 +5,15 @@ import java.io.Serializable;
 /**
  * Usec class
  */
-public class User implements Serializable{
+public class User implements Serializable {
     private transient String specialStr;
-    private  String age;
-    private  String name;
+    private String age;
+    private String name;
 
-    public User(){};
+    public User() {
+    }
+
+    ;
 
     public User(String age, String name) {
         this.age = age;

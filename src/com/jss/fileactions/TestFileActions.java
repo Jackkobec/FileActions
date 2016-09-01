@@ -2,18 +2,20 @@ package com.jss.fileactions;
 
         import java.io.File;
         import java.io.IOException;
+        import java.io.Serializable;
         import java.util.ArrayList;
         import java.util.List;
 
 /**
  * Test Bash Actions with files
  */
-public class TestFileActions {
+public class TestFileActions implements Serializable{
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Bash bash = new Bash();
         User user = new User("22", "Vasa");
         String path = "d://FileActions";
-
+        BashTestmenu btm = new BashTestmenu();
+        btm.initFile();
 //        bash.writeInto(path, "Hi there\nHello world\nWorld is beautiful\nThrout the hardship to the stars\nworld");
 //        System.out.println(bash.less(path));
 //        System.out.println("------------------------------------------------");
@@ -44,15 +46,15 @@ public class TestFileActions {
 //        System.out.println("------------------------------------------------");
 //        System.out.println("------------------------------------------------");
 
-
-        System.out.println("------------------------------------------------");
-        bash.listStrCorrectShow(bash.findRefactored(new File("d://Test Dir"), resaultArray, "teo"));
+//
+//        System.out.println("------------------------------------------------");
+//        bash.listStrCorrectShow(bash.findRefactored(new File("d://Test Dir"), resaultArray, "teo"));
 //        Car car = new Car("Lexus", "Black");
 //        bash.saveObjToFile(car, "d://Test Dir/serialUser.txt");
 //
 //
 //        System.out.println((bash.deSerialization(new Car(), "d://Test Dir/serialUser.txt")).toString());
-
+//    bash.less("d://Test Dir");
 
         //  bash.downloadFile("d://Test Dir/serial.txt", "d://Test Dir/downloaded.txt");
     }
