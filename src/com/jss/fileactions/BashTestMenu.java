@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 /**
  * Bash test menu
  */
-public class BashTestmenu implements Serializable {
+public class BashTestMenu implements Serializable {
     Scanner sc = new Scanner(System.in);
     User user = new User("22", "Vasa");
     Bash bash = new Bash();

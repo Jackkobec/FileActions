@@ -1,21 +1,23 @@
 package com.jss.fileactions;
 
-        import java.io.File;
-        import java.io.IOException;
-        import java.io.Serializable;
-        import java.util.ArrayList;
-        import java.util.List;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Test Bash Actions with files
  */
-public class TestFileActions implements Serializable{
+public class TestFileActions implements Serializable {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Bash bash = new Bash();
         User user = new User("22", "Vasa");
-        String path = "d://FileActions";
-        BashTestmenu btm = new BashTestmenu();
+
+
+        BashTestMenu btm = new BashTestMenu();
         btm.initFile();
+
+
 //        bash.writeInto(path, "Hi there\nHello world\nWorld is beautiful\nThrout the hardship to the stars\nworld");
 //        System.out.println(bash.less(path));
 //        System.out.println("------------------------------------------------");
