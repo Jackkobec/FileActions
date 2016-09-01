@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -21,9 +23,9 @@ public class BashTestmenu implements Serializable {
 
     public void initFile() throws IOException, ClassNotFoundException {
 
-        // System.out.println("Enter path to the test Directory:");
-        //  String testPath = sc.nextLine();
-        String testPath = "D://Test Dir2";
+        System.out.println("Enter path to the test Directory:");
+        String testPath = sc.nextLine();
+        // String testPath = "D://Test Dir2";
 
         //create dir from console path input
         bash.touch(testPath);
@@ -55,7 +57,7 @@ public class BashTestmenu implements Serializable {
         System.out.println("\"5\" - grep - find lines with keyword");
         System.out.println("\"6\" - saveObjToFile with serialization");
         System.out.println("\"7\" - deSerialization - replicate saved object from file");
-        System.out.println("\"8\" - Remove from contactList by multiparameters(name or phone) adn show contactList without him/\n" +
+        System.out.println("\"8\" - ls - show forks directories and inner files" +
                 "Удаление контакта по мультипараметру(имени или номеру) и отображение контакт - листа без него");
         System.out.println("\"9\" - writeInto write data from console to the test file");
 
@@ -128,18 +130,26 @@ public class BashTestmenu implements Serializable {
                 subMenu(testPath, createdTestFile, serializationFile);
             }
             break;
-//            case 8: {
-//                list.removeByDelParam("Vasa");
-//                list.contactListShow();
-//                subMenu();
-//            }
-//            break;
-//            case 9: {
-//                list.updateByParam("Vasa");
-//                list.contactListShow();
-//                subMenu();
-//            }
-//            break;
+            case 8: {
+                System.out.println("ls: ");
+                System.out.println("Enter path to show hiw forks directories and inner files:");
+                String startPath = sc.nextLine();
+                bash.ls(startPath);
+                subMenu(testPath, createdTestFile, serializationFile);
+            }
+            break;
+            case 9: {
+                System.out.println("recursive find: ");
+                List<String> resArray = new ArrayList<>();
+                System.out.println("Enter start path to begin search: ");
+                String startPath = sc.nextLine();
+                System.out.print("Enter keyword to search: ");
+                String keyword = sc.nextLine();
+
+                bash.listStrCorrectShow(bash.findRefactored(new File(startPath), resArray, keyword));
+                subMenu(testPath, createdTestFile, serializationFile);
+            }
+            break;
         }
     }
 
