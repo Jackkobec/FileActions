@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  *
  */
-public class Product {
+public class Product  {
     private double price;
     private String company;
     private String model;
@@ -52,4 +52,6 @@ public class Product {
     public void setModel(String model) {
         this.model = model;
     }
+
+
 }

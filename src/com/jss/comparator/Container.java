@@ -1,9 +1,12 @@
+/*
 package com.jss.comparator;
 
 import java.util.Comparator;
 
+*/
 /**
- */
+ *//*
+
 public class Container<T extends Product & Comparable<T>> {
     T iteml;
 
@@ -19,3 +22,4 @@ public class Container<T extends Product & Comparable<T>> {
 
 
 }
+*/

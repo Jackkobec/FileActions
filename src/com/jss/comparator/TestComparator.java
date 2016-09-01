@@ -4,10 +4,13 @@ import java.util.Comparator;
 import java.util.TreeSet;
 
 /**
- * Test Comparator
+ * Test Comparator and Comparable
  */
 public class TestComparator {
     public static void main(String[] args) {
+        /**
+         * Test Comparator
+         */
         //This Comparator returns Product sorted sorted by company name and price from low to high
         Comparator<Product> compPr = new PruductCompanyComporator().thenComparing(new ProductPriceComparator());
         //Create TreeSet with our Comparator
@@ -41,5 +44,22 @@ public class TestComparator {
 
         //As we can see, sorting successful
         System.out.println(products);
+        System.out.println("==================================");
+        /**
+         * Test Comparable
+         */
+        FlashMemory fm1 = new FlashMemory(200, "Trancend", "any");
+
+        FlashMemory fm2 = new FlashMemory(222, "Kingsdon", "any");
+        FlashMemory fm3 = new FlashMemory(333, "Trancend", "any");
+        FlashMemory fm4 = new FlashMemory(444, "Trancend", "any");
+        //! Почему то compareTo когда возвращает, что имя компании одинаково - не добавляет в TreeSet
+        TreeSet<FlashMemory> flashki = new TreeSet<>();
+        flashki.add(fm1);
+        flashki.add(fm2);
+        flashki.add(fm3);
+        flashki.add(fm4);
+
+        System.out.println(flashki);
     }
 }
