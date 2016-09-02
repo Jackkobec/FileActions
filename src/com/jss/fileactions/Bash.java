@@ -241,11 +241,11 @@ public class Bash implements IBash, Cloneable, Serializable {
         if (!file.exists()) {
             file.createNewFile();
         }
-        FileOutputStream fos = new FileOutputStream(file);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.write((byte[]) obj);
-        return (byte[]) obj;
 
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(baos);
+        oos.writeObject(obj);
+        return baos.toByteArray();
     }
 
     @Override
@@ -263,6 +263,16 @@ public class Bash implements IBash, Cloneable, Serializable {
 
         return obj;
     }
+
+
+    public Object fromByteArr2(byte[] arr) throws IOException, ClassNotFoundException {
+
+        ByteArrayInputStream bais = new ByteArrayInputStream(arr);
+        ObjectInputStream ois = new ObjectInputStream(bais);
+
+        return ois.readObject();
+    }
+
 
     @Override
     public Object cloneDeep(Object obj) throws IOException {
