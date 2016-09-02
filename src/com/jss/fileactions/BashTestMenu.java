@@ -59,8 +59,7 @@ public class BashTestMenu implements Serializable {
         System.out.println("\"7\" - deSerialization - replicate saved object from file");
         System.out.println("\"8\" - ls - show forks directories and inner files" +
                 "Удаление контакта по мультипараметру(имени или номеру) и отображение контакт - листа без него");
-        System.out.println("\"9\" - writeInto write data from console to the test file");
-
+        System.out.println("\"9\" - find -  recursive find files and dirs by keyword");
         System.out.print("Сделайте выбор пункта меню: ");
         Scanner sc = new Scanner(System.in);
 

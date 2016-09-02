@@ -13,9 +13,9 @@ public interface IBash {
 
     String less(String path) throws FileNotFoundException;
 
-    void writeInto(String path, String content) throws FileNotFoundException;
+    void writeInto(String path, String content) throws IOException;
 
-    void appendTo(String path, String content) throws FileNotFoundException;
+    void appendTo(String path, String content) throws IOException;
 
     // show files in current directory
     List<String> ls(String currentDirPath) throws FileNotFoundException;
@@ -39,7 +39,7 @@ public interface IBash {
     Object fromByteArr(byte[] arr) throws IOException;
 
     // do deep copy via Java Serialization, use above methods
-    Object cloneDeep(Object obj) throws IOException;
+    Object cloneDeep(Object obj) throws IOException, ClassNotFoundException;
 
     boolean saveObjToFile(Object obj, String filePath) throws IOException;
 

@@ -1,4 +1,4 @@
-package com.jss;
+package com.jss.fileactions;
 
 
 import java.io.*;
@@ -16,19 +16,9 @@ public class Bash implements IBash, Cloneable, Serializable {
     /**
      * Correct show List<String>: next element - next line without "," "[ ]" and other symbols
      */
-    public void listStrCorrectShow(List<String> list) {
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.print(list.get(i));
-//        }
-        for (String s : list) {
-            System.out.println(s);
-        }
-    }
-/*
-    public<T> void listStrCorrectShow(List<T> list) {
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.print(list.get(i));
-//        }
+
+
+    public <T> void listStrCorrectShow(List<T> list) {
         for (T s : list) {
             System.out.println(s);
         }
@@ -251,11 +241,11 @@ public class Bash implements IBash, Cloneable, Serializable {
         if (!file.exists()) {
             file.createNewFile();
         }
-        FileOutputStream fos = new FileOutputStream(file);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.write((byte[]) obj);
-        return (byte[]) obj;
 
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(baos);
+        oos.writeObject(obj);
+        return baos.toByteArray();
     }
 
     @Override
@@ -273,6 +263,16 @@ public class Bash implements IBash, Cloneable, Serializable {
 
         return obj;
     }
+
+
+    public Object fromByteArr2(byte[] arr) throws IOException, ClassNotFoundException {
+
+        ByteArrayInputStream bais = new ByteArrayInputStream(arr);
+        ObjectInputStream ois = new ObjectInputStream(bais);
+
+        return ois.readObject();
+    }
+
 
     @Override
     public Object cloneDeep(Object obj) throws IOException {
@@ -365,39 +365,6 @@ public class Bash implements IBash, Cloneable, Serializable {
                 find(files[i], resaultArray, keyWord);
             }
         }
-        //second trying recursion
-     /*   for (File f : files) {
-            if (f.isFile() || f.getName().equalsIgnoreCase(keyWord)) {
-
-                resaultArray.add("\"" + f.getName() + "\"" + " found in:  " + f.getAbsolutePath());
-
-            } else find(f.getCanonicalFile(), keyWord);
-        }*/
-        // first trying recursion
-     /*   for (File f : files) {
-            if (f.isDirectory()) {
-                if (f.getName().equalsIgnoreCase(keyWord)) {
-                    resaultArray.add("\"" + f.getName() + "\"" + " found in:  " + f.getAbsolutePath());
-
-                } else find(f.getCanonicalFile(), keyWord);
-            }
-        }*/
-        //Not recursion tactics
-
-     /*   for (int i = 0; i < files.length; i++) {
-            if (files[i].getName().contains(keyWord)) {
-                System.out.println(files[i].getName().replaceAll(keyWord, "\"" + keyWord + "\""));
-            } else if (files[i].listFiles().length != 0) {
-                File[] files2 = files[i].listFiles();
-//                for(int j = 0; j < files2.length; j++){
-//                    if(files2[j].getName()
-                for (int j = 0; j < files2.length; j++) {
-                    if (files[i].listFiles()[j].getName().contains(keyWord)) {
-                        System.out.println(files[i].listFiles()[j].getName());
-                    }
-                }
-            }
- }*/
         return resaultArray;
     }
 

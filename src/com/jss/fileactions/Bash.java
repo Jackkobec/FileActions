@@ -36,19 +36,14 @@ public class Bash implements IBash, Cloneable, Serializable {
         //we will build string with StringBuilder
         StringBuilder sb = new StringBuilder();
 
-        try {
-            //create input stream
-            BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()));
-            try {
-                //create variable for the append with StringBuilder
-                String string;
-                //read file line by line until EOF(find first empty line)
-                while ((string = in.readLine()) != null) {
-                    sb.append(string + "\n");
-                }
-                //close with finally
-            } finally {
-                in.close();
+        //create input stream
+        try (BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()))) {
+
+            //create variable for the append with StringBuilder
+            String string;
+            //read file line by line until EOF(find first empty line)
+            while ((string = in.readLine()) != null) {
+                sb.append(string + "\n");
             }
 
         } catch (IOException e) {
@@ -61,43 +56,45 @@ public class Bash implements IBash, Cloneable, Serializable {
      * Write info to the file
      */
     @Override
-    public void writeInto(String path, String content) throws FileNotFoundException {
-        try {
-            File file = new File(path);
-            //check file present, create new if not
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-            //create output stream
-            PrintWriter out = new PrintWriter(file.getAbsoluteFile());
-            try {
-                out.print(content);
-                //close in the finally for don't forget this action
-            } finally {
-                out.close();
-            }
+    public void writeInto(String path, String content) throws IOException {
+
+        File file = new File(path);
+        //check file present, create new if not
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        //create output stream
+        try (BufferedWriter out = new BufferedWriter(new PrintWriter(file.getAbsoluteFile()))) {
+
+            out.write(content);
+            out.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     /**
      * Updating  info in the file version used earlier methods less and writeInto
      */
     @Override
-    public void appendTo(String path, String content) throws FileNotFoundException {
+    public void appendTo(String path, String content) throws IOException {
         File file = new File(path);
         if (!file.exists()) {
             throw new FileNotFoundException("Указанный файл отсуствует");
         }
-        StringBuilder sb = new StringBuilder();
-        //read current info fom file, add it to StringBuilder
-        sb.append(less(path));
-        //add new content to the StringBuilder
-        sb.append(content);
-        //rewriting current file with new content
-        writeInto(path, sb.toString());
+        //new FileWriter(file.getAbsoluteFile(), true)))   true - let us do append to the file
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(file.getAbsoluteFile(), true))) {
 
+            out.newLine();
+            out.write(content);
+            out.flush();
+            out.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -275,17 +272,25 @@ public class Bash implements IBash, Cloneable, Serializable {
 
 
     @Override
-    public Object cloneDeep(Object obj) throws IOException {
-        File file = new File("d://TestDir/Byte.txt");
+    public Object cloneDeep(Object obj) throws ClassNotFoundException, IOException {
+
+        File file = new File("d://Test Dir2/Byte.txt");
         if (!file.exists()) {
             file.createNewFile();
         }
-        FileOutputStream fos = new FileOutputStream(file);
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
 
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+            oos.writeObject(obj);
+            oos.flush();
+            oos.close();
+        }
 
-        return null;
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file))) {
+
+            return ois.readObject();
+        }
     }
+
 
     @Override
     public boolean saveObjToFile(Object obj, String filePath) throws IOException {

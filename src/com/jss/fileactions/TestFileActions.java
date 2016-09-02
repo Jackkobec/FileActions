@@ -17,6 +17,7 @@ public class TestFileActions implements Serializable {
         BashTestMenu btm = new BashTestMenu();
         btm.initFile();
 
+//        System.out.println(bash.cloneDeep(user));
 
 //        bash.writeInto(path, "Hi there\nHello world\nWorld is beautiful\nThrout the hardship to the stars\nworld");
 //        System.out.println(bash.less(path));

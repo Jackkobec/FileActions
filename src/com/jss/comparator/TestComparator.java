@@ -54,6 +54,8 @@ public class TestComparator {
         FlashMemory fm3 = new FlashMemory(333, "Trancend", "any");
         FlashMemory fm4 = new FlashMemory(444, "Trancend", "any");
         //! Почему то compareTo когда возвращает, что имя компании одинаково - не добавляет в TreeSet
+        // ПОТОМУ ЧТО TreeSet МОЖЕТ ХРАНИТЬ РАЗНЫЕ ЗНАЧЕНИЯ , А МЫ ЗХАДАЛИ АЛГОРИТМ СРАВНЕНИЯ ТОЛЬКО ПО ИМЕНИ КОМПАНИИ
+        // И КОГДА ИМЯ ОДИНАКОВОЕ TreeSet НЕ ДОБАВЛЯЕТ В СЕБЯ ОБЪЕКТ!
         TreeSet<FlashMemory> flashki = new TreeSet<>();
         flashki.add(fm1);
         flashki.add(fm2);
