@@ -1,18 +1,30 @@
-package FindSorted;
-
-
-
-import java.util.ArrayList;
-import java.util.List;
+package FindSorted.actors;
 
 /**
  *
  * */
 
 public class Client extends User {
+    long clientID;
 
 
- /*   private List<Comment> comments;
+    public Client(String fullName, ContactInfo contactInfo) {
+        super(fullName, contactInfo);
+        this.clientID = (long) (Math.random() * 1000);
+    }
+
+    @Override
+    public String toString() {
+
+        return "Client{" +
+                "id=" + this.clientID +
+                ", fullName='" + this.getFullName() + '\'' +
+                ", pass='" + this.getPass() + '\'' +
+                ", " + this.getContactInfo() + "\n";
+
+    }
+}
+/*   private List<Comment> comments;
 
 
     public Client() {
@@ -52,15 +64,3 @@ public class Client extends User {
         this.comments = comments;
     }*/
 
-    @Override
-    public String toString() {
-
-        return "Client{" +
-                "id=" + this.getId() +
-                ", fullName='" + this.getFullName() + '\'' +
-                ", pass='" + this.getPass() + '\'' +
-                ", " + this.getContactInfo() +
-                '}';
-    }
-
-}

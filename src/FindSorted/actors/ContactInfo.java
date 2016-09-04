@@ -1,7 +1,7 @@
-package FindSorted;
+package FindSorted.actors;
 
 /**
- * Created by alexnagorniy on 20.08.16.
+ *
  */
 public class ContactInfo {
     private String city;

@@ -1,10 +1,8 @@
-package FindSorted;
+package FindSorted.actors;
 
-
-import java.util.Comparator;
 
 /**
- * Created by alexnagorniy on 20.08.16.
+ *
  */
 public abstract class User {
     private long id;
@@ -12,7 +10,16 @@ public abstract class User {
     private String pass;
     private ContactInfo contactInfo;
 
+    public User(String fullName, ContactInfo contactInfo) {
+        this.fullName = fullName;
+        this.contactInfo = contactInfo;
+    }
+
     public User() {
+
+    }
+
+/*public User() {
         this.fullName = "";
         this.pass = "" + (int)(Math.random()*10000);
         this.contactInfo = new ContactInfo();
@@ -48,7 +55,7 @@ public abstract class User {
         this.fullName = fullName != null ? fullName : "";
         this.pass = pass != null ? pass : "";
         this.contactInfo = contactInfo != null ? contactInfo : new ContactInfo();
-    }
+    }*/
 
     public long getId() {
         return id;
