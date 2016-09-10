@@ -1,9 +1,13 @@
 package com.jss.node_actions;
 
 import java.util.Arrays;
-
 /**
- * Created by Стас on 08.09.2016.
+ * Node Actions
+ *
+ * @Autor   Jack
+ * @Version 2.0
+ * @email:  jackkobec@gmail.com
+ * @Skype:  skypejs77
  */
 public class NodeUtilsImpl implements NodeUtils {
 
@@ -85,8 +89,8 @@ public class NodeUtilsImpl implements NodeUtils {
         Node lastPointer = headPointer;
         // move through the
         int nodeCount = 0;
-        for (Object obj : mas) {
 
+        for (Object obj : mas) {
             // new Node(obj, null)| <- lastPointer.next
             lastPointer.next = new Node(obj, null);
             // |null| <- headPointer <- |new Node(obj, null)| <- lastPointer
@@ -211,6 +215,13 @@ public class NodeUtilsImpl implements NodeUtils {
         return createNode(reversiveArray);
     }
 
+    /**
+     * reverse2
+     *
+     * @param curr
+     * @return
+     * @throws IncorrectChainException
+     */
     @Override
     public Node reverse2(Node curr) throws IncorrectChainException {
         if (null == curr) {
@@ -237,9 +248,28 @@ public class NodeUtilsImpl implements NodeUtils {
         return curr;
     }
 
+    /**
+     * reverse(Node curr, Node next, Node prev)
+     *
+     * @param curr
+     * @param next
+     * @param prev
+     * @return
+     * @throws IncorrectChainException
+     */
     @Override
-    public Node reverse(Node curr, Node next, Node prev) {
-        return null;
+    public Node reverse(Node curr, Node next, Node prev) throws IncorrectChainException {
+        if (null == curr) {
+            throw new IncorrectChainException("Incorrect chain!");
+        }
+        if (null == next) {
+            return curr;
+        }
+        Node chain = new Node(prev.value, new Node(curr.value, new Node(next.value)));
+        System.out.println(toString(chain));
+
+
+        return reverse(chain);
     }
 
 

@@ -31,7 +31,7 @@ public interface NodeUtils {
     public Node reverse2(Node curr) throws NodeUtilsImpl.IncorrectChainException;
 
     //reverse usin recursion
-    Node reverse(Node curr, Node next, Node prev);
+    Node reverse(Node curr, Node next, Node prev) throws NodeUtilsImpl.IncorrectChainException;
 
 
 

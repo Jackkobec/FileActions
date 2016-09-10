@@ -6,7 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Стас on 08.09.2016.
+ * Node Actions
+ *
+ * @Autor   Jack
+ * @Version 2.0
+ * @email:  jackkobec@gmail.com
+ * @Skype:  skypejs77
  */
 public class TestNodeActions {
     public static void main(String[] args) {
@@ -60,7 +65,6 @@ public class TestNodeActions {
         listObjCorrectShow(nu.toArray(chain2));
         System.out.println("========================================");
 
-
         chain2 = nu.createNodeR(user, user2, user3);
         System.out.println("Test reverse: ");
         System.out.println(nu.toString(nu.reverse(chain2)));
@@ -70,6 +74,15 @@ public class TestNodeActions {
         System.out.println("Test reverse2: ");
         System.out.println(nu.toString(nu.reverse2(chain2)));
         System.out.println("========================================");
+
+        Node nod1 = new Node(user);
+        Node nod2 = new Node(user2);
+        Node nod3 = new Node(user3);
+
+        System.out.println("Test reverse(Node curr, Node next, Node prev) : ");
+        System.out.println(nu.toString(nu.reverse(nod2, nod3, nod1)));
+        System.out.println("========================================");
+
     }
 
 
