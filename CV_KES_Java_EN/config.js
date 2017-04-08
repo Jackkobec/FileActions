@@ -1,1 +1,0 @@
-IDRViewer.config = {"pagecount":1,"title":"","author":"zakhartchuk","fileName":"CV_KES_Java_EN.pdf","bounds":[[909,1286]],"bookmarks":[{"title":"\u200eD:\\Резюме\\CV_KES_Java_EN.doc\u200e","page":1,"zoom":"XYZ 0 1286 1"}],"thumbnailType":"jpg","pageType":"html","pageLabels":[]};
